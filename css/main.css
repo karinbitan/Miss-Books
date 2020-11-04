@@ -1,3 +1,8 @@
+@import './cmps/book-header.css';
+@import './cmps/book-add.css';
+@import './cmps/book-footer.css';
+
+
 * {
     box-sizing: border-box;
 }
@@ -19,21 +24,25 @@ h4 {
     text-transform: capitalize;
 }
 
-/* Header */
 
-.book-header {
-    height: 130px;
-    background-color: rgb(247, 213, 164);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 /* Main content */
 
 /* .main-content{
     height: 500px;
 } */
+
+/* User Msg */
+
+.user-msg {
+    border: 1px solid black;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    background-color: rgb(173, 230, 185);
+    padding: 10px 20px;
+}
 
 /* Reviews */
 
@@ -42,7 +51,6 @@ h4 {
     width: 200px;
     height: 150px;
 }
-
 
 .red {
     color: red;
@@ -74,12 +82,3 @@ h4 {
     cursor: pointer;
 }
 
-/* footer */
-
-.book-footer {
-    height: 100px;
-    background-color: rgb(109, 109, 109);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}

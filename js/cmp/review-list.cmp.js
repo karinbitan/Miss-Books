@@ -1,4 +1,5 @@
-import { bookService, onCreateBookBus } from './../services/book-service.js';
+import { bookService } from './../services/book-service.js';
+import { eventBus } from './../services/event-bus-service.js';
 
 export default {
     //props: ['bookId', 'reviews'],
@@ -22,7 +23,7 @@ export default {
     },
     created() {
         this.reviews = bookService.getReviews(this.bookId);
-        onCreateBookBus.$on('bookCreated', () => {
+        eventBus.$on('bookCreated', () => {
             this.reviews = bookService.getReviews(this.bookId);
         });
     },
@@ -30,9 +31,9 @@ export default {
         removeReview(idx) {
             this.reviews = this.reviews.filter((review, index) => {
                 return idx != index;
-            }
-            )
+            })
             bookService.saveReviewToStorage(this.bookId, this.reviews);
+            eventBus.$emit('show-msg', 'Review removed!');
         }
     }
 }

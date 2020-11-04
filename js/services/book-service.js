@@ -447,13 +447,20 @@ export const gBooks = [
 export const bookService = {
   getBooks,
   getBookById,
+  saveBooksToStorage,
+  addBook,
   addReview,
   getReviews,
   saveReviewToStorage
 }
 
 function getBooks() {
-  return Promise.resolve(gBooks);
+  var books = storageService.loadFromStorage('books');
+  if (!books) {
+    books = gBooks;
+    saveBooksToStorage(books)
+  }
+  return Promise.resolve(books);
 }
 
 function getBookById(bookId) {
@@ -462,6 +469,16 @@ function getBookById(bookId) {
   }))
 }
 
+function saveBooksToStorage(books) {
+  storageService.saveToStorage("books", books);
+}
+
+function addBook(book) {
+ return getBooks().then((books) => {
+      books.unshift(book);
+      saveBooksToStorage(books);
+    })
+}
 
 function addReview(bookId, review) {
   var reviews = storageService.loadFromStorage('book-id:' + bookId);
@@ -480,8 +497,6 @@ function getReviews(bookId) {
   return reviews;
 }
 
-function saveReviewToStorage(bookId, reviews){
+function saveReviewToStorage(bookId, reviews) {
   storageService.saveToStorage('book-id:' + bookId, reviews);
 }
-
-export const onCreateBookBus = new Vue();

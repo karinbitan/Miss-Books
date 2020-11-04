@@ -1,4 +1,5 @@
-import { bookService, onCreateBookBus } from './../services/book-service.js';
+import { bookService} from './../services/book-service.js';
+import { eventBus} from './../services/event-bus-service.js';
 import reviewList from './review-list.cmp.js';
 
 export default {
@@ -50,7 +51,7 @@ export default {
             var bookId = this.bookId;
             var review = this.review;
             bookService.addReview(bookId, review);
-            onCreateBookBus.$emit('bookCreated');
+            eventBus.$emit('bookCreated');
             // this.reviews = bookService.getReviews(this.bookId);
         }
     },
