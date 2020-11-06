@@ -23,7 +23,7 @@ export default {
     },
     created() {
         this.reviews = bookService.getReviews(this.bookId);
-        eventBus.$on('bookCreated', () => {
+        eventBus.$on('reviewCreated', () => {
             this.reviews = bookService.getReviews(this.bookId);
         });
     },

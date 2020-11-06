@@ -51,7 +51,7 @@ export default {
             var bookId = this.bookId;
             var review = this.review;
             bookService.addReview(bookId, review);
-            eventBus.$emit('bookCreated');
+            eventBus.$emit('reviewCreated');
             // this.reviews = bookService.getReviews(this.bookId);
         }
     },
